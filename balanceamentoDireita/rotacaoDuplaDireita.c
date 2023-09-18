@@ -1,5 +1,5 @@
 Nodo *rotacaoDuplaDireita(Nodo *y) //realiza rotacao a direita
 {
-    rotacaoSimplesEsquerda(y->filhoEsquerda);
+    y->filhoEsquerda = rotacaoSimplesEsquerda(y->filhoEsquerda);
     return rotacaoSimplesDireita(y);
 }
