@@ -2,8 +2,6 @@
 
 void menu(short *opcao);
 
-short confirmacao();
-
 void opcaoInexistente();
 
 short max(short a, short b);
@@ -61,33 +59,6 @@ void menu(short *opcao)
     }
 
     return;
-};
-
-// confirmacao: Verifica se o usuario deseja proseguir com a acao que escolheu.
-
-short confirmacao()
-{
-    short confirmacao;
-    while (1)
-    {
-
-        printf("----------------------------------\n\n");
-        printf(" </> Deseja realmente seguir com esta acao?\n\n");
-        printf("    [1] Sim\n");
-        printf("    [0] Nao\n\n");
-        printf("----------------------------------\n\n");
-
-        printf(" </> Informe o numero da opcao: ");
-        scanf("%hd", &confirmacao);
-        printf("\n");
-
-        if (confirmacao > -1 && confirmacao < 2)
-            break;
-
-        opcaoInexistente();
-    };
-
-    return confirmacao;
 };
 
 // opcaoInexistente: Alerta que a opcao informada nao existe.
