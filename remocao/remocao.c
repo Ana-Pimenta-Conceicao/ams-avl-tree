@@ -1,13 +1,12 @@
 
 // dev
-Nodo *remover(Nodo *ponteiroRaiz, Nodo *ponteiroNodo, int chave)
+Nodo *remover(Nodo **ponteiroRaiz, Nodo *ponteiroNodo, int chave)
 {
 
     if (ponteiroNodo == NULL)
     {
 
         printf("Valor não encontrado\n");
-
         return ponteiroNodo;
     }
     else
