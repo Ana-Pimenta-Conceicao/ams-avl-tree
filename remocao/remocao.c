@@ -1,101 +1,99 @@
+
 //dev
+Nodo *remover(Nodo *pRaiz, int chave)
+{
 
-Nodo* remover(Nodo *pRaiz, int chave){
-
-    if(pRaiz == NULL){
+    if (pRaiz == NULL)
+    {
 
         printf("Valor não encontrado\n");
 
         return pRaiz;
+    }
+    else
+    {
 
-    } else {
+        if (pRaiz->numeroNodo == chave)
+        {
 
-        if(pRaiz->valor == chave){
-
-            if(pRaiz->esquerdo == NULL && pRaiz->direito ==NULL){
+            if (pRaiz->grauNodo == 0)
+            {
 
                 free(pRaiz);
 
                 printf("Elemento folha removido %d!\n", chave);
 
                 return NULL;
-
             }
 
-            else{
+            else
+            {
 
-                if(pRaiz-> filhoEsquerdo != NULL && pRaiz->filhoDireita !=NULL){
+                if (pRaiz->grauNodo == 2)
+                {
 
-                    Nodo *aux = pRaiz -> filhoEsquerda;
+                    Nodo *aux = pRaiz->filhoEsquerda;
 
-                    while(aux->filhoDireita !=NULL)
+                    while (aux->filhoDireita != NULL)
 
-                        aux = aux -> filhoDireita;
+                        aux = aux->filhoDireita;
 
-                    Nodo *paiAux = pRaiz -> filhoEsquerda;
-                    if (pRaiz -> filhoEsquerda != aux )
+                    Nodo *paiAux = pRaiz->filhoEsquerda;
+                    if (pRaiz->filhoEsquerda != aux)
                     {
-                        while (paiAux->filhodireita != aux)
-                        
+                        while (paiAux->filhoDireita != aux)
+
                             paiAux = paiAux->filhoDireita;
 
-                        paiAux -> filhoDireita = NULL;
-                    }    
-                    else 
-                    {
-                         pRaiz->filhoEsquerda = aux->filhoEsquerda;
-
+                        paiAux->filhoDireita = NULL;
                     }
-                    
-                    
-                    pRaiz -> numeroNodo = aux -> numeroNodo;
+                    else
+                    {
+                        pRaiz->filhoEsquerda = aux->filhoEsquerda;
+                    }
 
-                    aux -> numeroNodo = chave;
+                    pRaiz->numeroNodo = aux->numeroNodo;
+
+                    aux->numeroNodo = chave;
 
                     printf("Elemento trocado: %d !\n", chave);
 
                     free(aux);
 
                     return pRaiz;
-
-                    
-
                 }
 
-                else {
+                else
+                {
 
                     Nodo *aux;
 
-                    if(pRaiz-> filhoEsquerda != NULL)
+                    if (pRaiz->filhoEsquerda != NULL)
 
-                        aux = pRaiz -> filhoEsquerda;
+                        aux = pRaiz->filhoEsquerda;
 
                     else
 
-                        aux = pRaiz -> filhoDireita;
+                        aux = pRaiz->filhoDireita;
 
                     free(pRaiz);
 
                     printf("Elemento com 1 filho removido %d !\n", chave);
 
                     return aux;
-
                 }
-
             }
+        }
+        else
+        {
 
-        } else {
+            if (chave < pRaiz->numeroNodo)
 
-            if(chave < pRaiz -> numeroNodo)
-
-                pRaiz -> filhoEsquerda = remover (pRaiz-> filhoEsquerda, chave);
+                pRaiz->filhoEsquerda = remover(pRaiz->filhoEsquerda, chave);
 
             else
 
-                pRaiz -> filhoDireita = remover (pRaiz-> filhoDireita, chave);
-
+                pRaiz->filhoDireita = remover(pRaiz->filhoDireita, chave);
         }
-
     }
-
 }
