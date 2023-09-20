@@ -4,6 +4,8 @@ void menu(short *opcao);
 
 void opcaoInexistente();
 
+short verificarTamanhoNumero(short numero);
+
 short max(short a, short b);
 
 void limparMemoria(Nodo *nodo);
@@ -69,6 +71,16 @@ void opcaoInexistente()
     printf(" </> A opcao informada nao existe!\n\n\n");
 
     return;
+};
+
+// verificarTamanhoNumero: Verifica se o número passado por parâmetro está dentro do requisito.
+
+short verificarTamanhoNumero(short numero)
+{
+    if (numero > -9999 && numero < 9999)
+        return 1;
+    else
+        return 0;
 };
 
 // max: Encontra o maior valor passado por parametro.

@@ -27,7 +27,7 @@ short verificarArvoreVazia(Nodo *nodo);
 
 Nodo *alocarNodo();
 
-Nodo *verificarExistenciaNodo(Nodo *nodo, int alvo);
+Nodo *verificarExistenciaNodo(Nodo *nodo, short alvo);
 
 void construirNodo(Nodo **pRaiz, Nodo *nodo);
 
@@ -35,7 +35,7 @@ void alterarDadosNodo(Nodo *nodo, short nivel);
 
 void buscarNodoDesbalanceado(Nodo **alvo, short *rotacao, Nodo *nodo);
 
-void encontrarPaiNodo(Nodo **pai, short *lado, int numero, Nodo *nodo);
+void encontrarPaiNodo(Nodo **pai, short *lado, short numero, Nodo *nodo);
 
 void balancearArvore(Nodo **pRaiz);
 
@@ -61,7 +61,7 @@ int main()
 
         case 1:
 
-            printf("--------------  1.0 CONSTRUCAO  -------------\n\n");
+            printf("--------------  1.1 CONSTRUCAO  -------------\n\n");
             printf(" </> Alocando nodo.\n");
             novoNodo = alocarNodo();
 
@@ -72,12 +72,12 @@ int main()
                 construirNodo(&pRaiz, novoNodo);
                 printf(" </> Nodo construido.\n\n");
                 printf("-----------------------------------------\n\n");
-                printf("--------------  2.0 ALTERACAO  --------------\n\n");
+                printf("--------------  2.1 ALTERACAO  --------------\n\n");
                 printf(" </> Alterando dados do(s) nodo(s).\n");
                 alterarDadosNodo(pRaiz, 1);
                 printf(" </> Dados alterados.\n\n");
                 printf("-----------------------------------------\n\n");
-                printf("------------  3.0 BALANCEAMENTO  ------------\n\n");
+                printf("------------  3.1 BALANCEAMENTO  ------------\n\n");
                 printf(" </> Verificando balanceamento.\n");
                 balancearArvore(&pRaiz);
                 printf(" </> Verificacao concluida.\n\n");
@@ -94,18 +94,18 @@ int main()
                 printf(" </> A arvore esta vazia!\n");
             else
             {
-                printf("---------------  1.0 REMOCAO  ---------------\n\n");
+                printf("---------------  1.1 REMOCAO  ---------------\n\n");
                 removerNodo(&pRaiz);
                 printf("-----------------------------------------\n\n");
 
                 if (!verificarArvoreVazia(pRaiz))
                 {
-                    printf("--------------  2.0 ALTERACAO  --------------\n\n");
+                    printf("--------------  2.1 ALTERACAO  --------------\n\n");
                     printf(" </> Alterando dados do(s) nodo(s).\n");
                     alterarDadosNodo(pRaiz, 1);
                     printf(" </> Dados alterados.\n\n");
                     printf("-----------------------------------------\n\n");
-                    printf("------------  3.0 BALANCEAMENTO  ------------\n\n");
+                    printf("------------  3.1 BALANCEAMENTO  ------------\n\n");
                     printf(" </> Verificando balanceamento.\n");
                     balancearArvore(&pRaiz);
                     printf(" </> Verificacao concluida.\n\n");
@@ -123,15 +123,15 @@ int main()
             {
                 /* Funcao VISITACAO */
                 printf(" </> Pre-ordem: ");
-                // preOrdem(pRaiz);
+                preOrdem(pRaiz);
                 printf("\n");
 
                 printf(" </> Em-ordem.: ");
-                // emOrdem(pRaiz);
+                emOrdem(pRaiz);
                 printf("\n");
 
                 printf(" </> Pos-ordem: ");
-                // posOrdem(pRaiz);
+                posOrdem(pRaiz);
                 printf("\n\n\n");
             }
 
@@ -160,12 +160,7 @@ int main()
                     printf("-------");
                 printf("-\n");
 
-                printf("| Numero | Nivel | Altura | Grau | Fator | Esquerda | Direita |\n");
-
-                printf("                                                                ");
-                for (i = 1; i < (pRaiz->alturaNodo + 2); i++)
-                    printf("       ");
-                printf("|\n");
+                printf("| Numero | Nivel | Altura | Grau | Fator | Esquerda | Direita |\n\n");
 
                 mostrarArvoreDetalhada(pRaiz, (pRaiz->alturaNodo + 1));
                 printf("\n");
@@ -219,7 +214,7 @@ Nodo *alocarNodo()
 
 // verificarExistenciaNodo: Verifica se existe um no com o valor passado pela variavel alvo.
 
-Nodo *verificarExistenciaNodo(Nodo *nodo, int alvo)
+Nodo *verificarExistenciaNodo(Nodo *nodo, short alvo)
 {
 
     if (nodo)
@@ -245,12 +240,20 @@ void construirNodo(Nodo **pRaiz, Nodo *nodo)
     while (1)
     {
         printf(" </> Informe um numero de ate 4 digitos para o nodo: ");
-        scanf("%d", &nodo->numeroNodo);
+        scanf("%hd", &nodo->numeroNodo);
+
+        if (!verificarTamanhoNumero(nodo->numeroNodo))
+        {
+            printf("\n");
+            printf(" </> O numero deve ser entre -9999 e 9999!\n\n");
+            continue;
+        }
 
         if (verificarExistenciaNodo(*pRaiz, nodo->numeroNodo))
         {
             printf("\n");
             printf(" </> Ja existe um nodo com este numero!\n\n");
+            continue;
         }
         else
             break;
@@ -351,7 +354,7 @@ void buscarNodoDesbalanceado(Nodo **alvo, short *rotacao, Nodo *nodo)
 
 // encontrarPaiNodo: Encontra o pai do nodo.
 
-void encontrarPaiNodo(Nodo **pai, short *lado, int numero, Nodo *nodo)
+void encontrarPaiNodo(Nodo **pai, short *lado, short numero, Nodo *nodo)
 {
     if (nodo->numeroNodo != numero)
     {
@@ -404,7 +407,7 @@ void balancearArvore(Nodo **pRaiz)
         if ((*pRaiz) != alvo)
         {
             printf(" </> Pai do nodo encontrado.\n\n");
-            printf("---------------  3.1 ROTACAO  ---------------\n\n");
+            printf("---------------  3.2 ROTACAO  ---------------\n\n");
             printf(" </> Pai: %d.\n", pai->numeroNodo);
             printf(" </> Alvo: %d.\n", alvo->numeroNodo);
 
@@ -460,7 +463,7 @@ void balancearArvore(Nodo **pRaiz)
         {
 
             printf(" </> O nodo desbalanceado e a raiz.\n\n");
-            printf("---------------  3.1 ROTACAO  ---------------\n\n");
+            printf("---------------  3.2 ROTACAO  ---------------\n\n");
             printf(" </> Raiz: %d.\n", alvo->numeroNodo);
 
             if (rotacao == -2)
@@ -488,7 +491,7 @@ void balancearArvore(Nodo **pRaiz)
 
         printf(" </> Rotacao bem sucedida.\n");
         printf(" </> Balanceamento completo.\n\n");
-        printf("--------------  3.2 ALTERACAO  --------------\n\n");
+        printf("--------------  3.3 ALTERACAO  --------------\n\n");
         printf(" </> Alterando dados do(s) nodo(s).\n");
         alterarDadosNodo((*pRaiz), 1);
         printf(" </> Dados alterados.\n\n");
@@ -507,24 +510,34 @@ void removerNodo(Nodo **pRaiz)
     mostrarArvoreSimplificada((*pRaiz), (*pRaiz)->alturaNodo);
 
     Nodo *alvo = NULL;
-    int numero;
+    short numero;
     while (1)
     {
         printf(" </> Informe o numero do nodo: ");
-        scanf("%d", &numero);
+        scanf("%hd", &numero);
         printf(" </> Buscando nodo.\n");
+
+        if (!verificarTamanhoNumero(numero))
+        {
+            printf("\n");
+            printf(" </> O numero deve ser entre -9999 e 9999!\n\n");
+            continue;
+        }
+
         alvo = verificarExistenciaNodo((*pRaiz), numero);
 
-        if (!alvo) {
+        if (!alvo)
+        {
             printf("\n");
             printf(" </> Nao existe um nodo com este numero!\n\n");
-        } else
+        }
+        else
             printf(" </> Nodo encontrado.\n");
         break;
     }
 
     printf(" </> Removendo nodo %d.\n", alvo->numeroNodo);
-    remover(pRaiz, (*pRaiz), alvo->numeroNodo); /* Funca REMOCAO */
+    remover((*pRaiz), alvo->numeroNodo); /* Funca REMOCAO */
     printf(" </> Nodo removido com sucesso.\n\n");
 
     return;
