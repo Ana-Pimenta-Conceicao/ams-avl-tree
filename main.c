@@ -537,7 +537,7 @@ void removerNodo(Nodo **pRaiz)
     }
 
     printf(" </> Removendo nodo %d.\n", alvo->numeroNodo);
-    remover((*pRaiz), alvo->numeroNodo); /* Funca REMOCAO */
+    (*pRaiz) = remover((*pRaiz), alvo->numeroNodo); /* Funca REMOCAO */
     printf(" </> Nodo removido com sucesso.\n\n");
 
     return;
