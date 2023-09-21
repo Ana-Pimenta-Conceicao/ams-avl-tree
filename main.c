@@ -71,17 +71,17 @@ int main()
                 printf(" </> Construindo nodo.\n");
                 construirNodo(&pRaiz, novoNodo);
                 printf(" </> Nodo construido.\n\n");
-                printf("-----------------------------------------\n\n");
+                printf("---------------------------------------------\n\n");
                 printf("--------------  2.1 ALTERACAO  --------------\n\n");
                 printf(" </> Alterando dados do(s) nodo(s).\n");
                 alterarDadosNodo(pRaiz, 1);
                 printf(" </> Dados alterados.\n\n");
-                printf("-----------------------------------------\n\n");
+                printf("---------------------------------------------\n\n");
                 printf("------------  3.1 BALANCEAMENTO  ------------\n\n");
                 printf(" </> Verificando balanceamento.\n");
                 balancearArvore(&pRaiz);
                 printf(" </> Verificacao concluida.\n\n");
-                printf("-----------------------------------------\n\n");
+                printf("---------------------------------------------\n\n");
             }
             else
                 printf(" </> Nao ha espaco de memoria disponivel!\n");
@@ -96,7 +96,7 @@ int main()
             {
                 printf("---------------  1.1 REMOCAO  ---------------\n\n");
                 removerNodo(&pRaiz);
-                printf("-----------------------------------------\n\n");
+                printf("---------------------------------------------\n\n");
 
                 if (!verificarArvoreVazia(pRaiz))
                 {
@@ -109,7 +109,7 @@ int main()
                     printf(" </> Verificando balanceamento.\n");
                     balancearArvore(&pRaiz);
                     printf(" </> Verificacao concluida.\n\n");
-                    printf("-----------------------------------------\n\n");
+                    printf("---------------------------------------------\n\n");
                 }
             }
 
@@ -175,13 +175,17 @@ int main()
 
         case 0:
 
+            printf("------------  1.1 ENCERRAMENTO  -------------\n\n");
             if (pRaiz)
             {
+                printf("--------------  1.2 LIBERACAO  --------------\n\n");
                 printf(" </> Liberando espaco de memoria preenchido.\n");
                 limparMemoria(pRaiz);
-                printf(" </> Espaco liberado.\n");
+                printf(" </> Espaco liberado.\n\n");
+                printf("---------------------------------------------\n\n");
             }
             encerrarPrograma();
+            printf("---------------------------------------------\n\n");
 
             break;
         }
@@ -457,7 +461,7 @@ void balancearArvore(Nodo **pRaiz)
                     printf(" </> RDD para %d que e filho de %d.\n\n", alvo->numeroNodo, pai->numeroNodo);
                 }
             }
-            printf("-----------------------------------------\n\n");
+            printf("---------------------------------------------\n\n");
         }
         else
         {
@@ -486,7 +490,7 @@ void balancearArvore(Nodo **pRaiz)
                 (*pRaiz) = rotacaoDuplaDireita(alvo); /* Funcao RDD */
                 printf(" </> RDD para %d que e a raiz.\n\n", alvo->numeroNodo);
             }
-            printf("-----------------------------------------\n\n");
+            printf("---------------------------------------------\n\n");
         }
 
         printf(" </> Rotacao bem sucedida.\n");
@@ -495,7 +499,7 @@ void balancearArvore(Nodo **pRaiz)
         printf(" </> Alterando dados do(s) nodo(s).\n");
         alterarDadosNodo((*pRaiz), 1);
         printf(" </> Dados alterados.\n\n");
-        printf("-----------------------------------------\n\n");
+        printf("---------------------------------------------\n\n");
     }
     else
         printf(" </> Nao ha nodo(s) desbalanceado(s).\n");

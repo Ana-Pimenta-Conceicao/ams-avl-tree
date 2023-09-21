@@ -110,7 +110,7 @@ void limparMemoria(Nodo *nodo)
 void encerrarPrograma()
 {
 
-    printf(" </> Agradecemos por utilizar nosso software.\n\n\n");
+    printf(" </> Agradecemos por utilizar nosso software.\n\n");
 
     return;
 };
