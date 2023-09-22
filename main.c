@@ -243,7 +243,9 @@ void construirNodo(Nodo **pRaiz, Nodo *nodo)
 {
     while (1)
     {
-        printf(" </> Informe um numero de ate 4 digitos para o nodo: ");
+        printf(" </> OBS: O numero deve ser entre - 32768 e 32767.\n");
+        printf(" </> Informe o numero do nodo: ");
+        
         scanf("%hd", &nodo->numeroNodo);
 
         if (verificarExistenciaNodo(*pRaiz, nodo->numeroNodo))
@@ -510,6 +512,7 @@ void removerNodo(Nodo **pRaiz)
     short numero;
     while (1)
     {
+        printf(" </> OBS: O numero deve ser entre - 32768 e 32767.\n");
         printf(" </> Informe o numero do nodo: ");
         scanf("%hd", &numero);
         printf(" </> Buscando nodo.\n");
