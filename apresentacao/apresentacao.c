@@ -29,10 +29,10 @@ void mostrarArvoreSimplificada(Nodo *nodo, short altura)
 
         for (i = 0; i < nodo->nivelNodo; i++)
         {
-            printf("           ");
+            printf("            ");
         }
 
-        printf(" (%5d)%2hd \n\n", nodo->numeroNodo, nodo->fatorBalanceamento);
+        printf(" (%6hd)%2hd \n\n", nodo->numeroNodo, nodo->fatorBalanceamento);
 
         mostrarArvoreSimplificada(nodo->filhoEsquerda, (altura - 1));
     }
@@ -52,26 +52,26 @@ void mostrarArvoreDetalhada(Nodo *nodo, short altura)
 
         if (nodo->nivelNodo > 1)
         {
-            printf("                                                                ");
+            printf("                                                               ");
             for (i = 1; i < (altura + 1); i++)
             {
-                printf("       ");
+                printf("        ");
             }
             printf("|\n");
         }
 
-        printf("|  %5d |   %2hd  |   %2hd   |   %hd  |   %2hd  |     %hd    |    %hd    | ", nodo->numeroNodo, nodo->nivelNodo, nodo->alturaNodo, nodo->grauNodo, nodo->fatorBalanceamento, nodo->alturaEsquerda, nodo->alturaDireita);
+        printf("| %6hd |   %2hd  |   %2hd   |   %hd  |   %2hd  |     %hd    |    %hd    | ", nodo->numeroNodo, nodo->nivelNodo, nodo->alturaNodo, nodo->grauNodo, nodo->fatorBalanceamento, nodo->alturaEsquerda, nodo->alturaDireita);
 
         for (i = 1; i < nodo->nivelNodo; i++)
         {
-            printf("       ");
+            printf("        ");
         }
 
         printf(" %5d ", nodo->numeroNodo);
 
         for (i = nodo->nivelNodo; i < altura; i++)
         {
-            printf("-------");
+            printf("--------");
         }
         printf("|\n");
 
