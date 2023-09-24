@@ -245,7 +245,7 @@ void construirNodo(Nodo **pRaiz, Nodo *nodo)
     {
         printf(" </> OBS: O numero deve ser entre - 32768 e 32767.\n");
         printf(" </> Informe o numero do nodo: ");
-        
+
         scanf("%hd", &nodo->numeroNodo);
 
         if (verificarExistenciaNodo(*pRaiz, nodo->numeroNodo))
@@ -525,13 +525,15 @@ void removerNodo(Nodo **pRaiz)
             printf(" </> Nao existe um nodo com este numero!\n\n");
         }
         else
+        {
             printf(" </> Nodo encontrado.\n");
-        break;
+            break;
+        }
     }
 
     printf(" </> Removendo nodo %d.\n", alvo->numeroNodo);
     (*pRaiz) = remover((*pRaiz), alvo->numeroNodo); /* Funca REMOCAO */
-    printf(" </> Nodo removido com sucesso.\n\n");
+    printf("\n");
 
     return;
 };
