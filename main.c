@@ -259,7 +259,7 @@ void construirNodo(Nodo **pRaiz, Nodo *nodo)
     }
 
     printf(" </> Inserindo nodo %hd na arvore.\n", nodo->numeroNodo);
-    nodo->nivelNodo = inserirNodo(nodo, pRaiz, (*pRaiz)) + 1; /* Funcao INSERCAO */
+    nodo->nivelNodo = inserirNodo(nodo, pRaiz) + 1; /* Funcao INSERCAO */
     printf(" </> Nodo inserido.\n");
 
     nodo->grauNodo = 0;
