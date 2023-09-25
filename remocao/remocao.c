@@ -1,68 +1,64 @@
-
-// dev
-Nodo *remover(Nodo **ponteiroRaiz, Nodo *ponteiroNodo, int chave)
+Nodo *remover(Nodo *pRaiz, short chave)
 {
 
-    if (ponteiroNodo == NULL)
+    if (pRaiz == NULL)
     {
 
-        printf("Valor não encontrado\n");
-        return ponteiroNodo;
+        printf(" </> Elemento não encontrado\n");
+
+        return pRaiz;
     }
     else
     {
 
-        if (ponteiroNodo->numeroNodo == chave)
+        if (pRaiz->numeroNodo == chave)
         {
 
-            if (ponteiroNodo->grauNodo == 0)
+            if (pRaiz->filhoEsquerda == NULL && pRaiz->filhoDireita == NULL)
             {
-                if ((*ponteiroRaiz) != NULL)
-                {
-                    (*ponteiroRaiz) = NULL;
-                    free(ponteiroNodo);
-                }
-                else
-                    free(ponteiroNodo);
+
+                free(pRaiz);
+
+                printf(" </> Elemento folha removido %d!\n", chave);
 
                 return NULL;
             }
-            //////////////
+
             else
             {
 
-                if (ponteiroNodo->grauNodo == 2)
+                if (pRaiz->filhoEsquerda != NULL && pRaiz->filhoDireita != NULL)
                 {
 
-                    Nodo *aux = ponteiroNodo->filhoEsquerda;
+                    Nodo *aux = pRaiz->filhoEsquerda;
 
                     while (aux->filhoDireita != NULL)
 
                         aux = aux->filhoDireita;
 
-                    Nodo *paiAux = ponteiroNodo->filhoEsquerda;
-                    if (ponteiroNodo->filhoEsquerda != aux)
+                    Nodo *paiAux = pRaiz->filhoEsquerda;
+                    if (pRaiz->filhoEsquerda != aux)
                     {
                         while (paiAux->filhoDireita != aux)
 
                             paiAux = paiAux->filhoDireita;
 
-                        paiAux->filhoDireita = NULL;
+                        paiAux->filhoDireita = aux->filhoEsquerda;
                     }
                     else
                     {
-                        ponteiroNodo->filhoEsquerda = aux->filhoEsquerda;
+                        pRaiz->filhoEsquerda = aux->filhoEsquerda;
                     }
 
-                    ponteiroNodo->numeroNodo = aux->numeroNodo;
+                    pRaiz->numeroNodo = aux->numeroNodo;
 
                     aux->numeroNodo = chave;
 
-                    printf("Elemento trocado: %d !\n", chave);
+                    printf(" </> Elemento trocado: %d !\n", chave);
 
                     free(aux);
 
-                    return ponteiroNodo;
+                    return pRaiz;
                 }
 
                 else
@@ -70,17 +66,17 @@ Nodo *remover(Nodo **ponteiroRaiz, Nodo *ponteiroNodo, int chave)
 
                     Nodo *aux;
 
-                    if (ponteiroNodo->filhoEsquerda != NULL)
+                    if (pRaiz->filhoEsquerda != NULL)
 
-                        aux = ponteiroNodo->filhoEsquerda;
+                        aux = pRaiz->filhoEsquerda;
 
                     else
 
-                        aux = ponteiroNodo->filhoDireita;
+                        aux = pRaiz->filhoDireita;
 
-                    free(ponteiroNodo);
+                    free(pRaiz);
 
-                    printf("Elemento com 1 filho removido %d !\n", chave);
+                    printf(" </> Elemento com 1 filho removido %d !\n", chave);
 
                     return aux;
                 }
@@ -89,13 +85,15 @@ Nodo *remover(Nodo **ponteiroRaiz, Nodo *ponteiroNodo, int chave)
         else
         {
 
-            if (chave < ponteiroNodo->numeroNodo)
+            if (chave < pRaiz->numeroNodo)
 
-                ponteiroNodo->filhoEsquerda = remover(ponteiroRaiz, ponteiroNodo->filhoEsquerda, chave);
+                pRaiz->filhoEsquerda = remover(pRaiz->filhoEsquerda, chave);
 
             else
 
-                ponteiroNodo->filhoDireita = remover(ponteiroRaiz, ponteiroNodo->filhoDireita, chave);
+                pRaiz->filhoDireita = remover(pRaiz->filhoDireita, chave);
+
+            return pRaiz;
         }
     }
 }
