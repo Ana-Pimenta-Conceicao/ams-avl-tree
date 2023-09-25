@@ -1,9 +1,9 @@
 
-Nodo *rotacaoSimplesDireita(Nodo *y) //realiza rotacao a direita
+Nodo *rotacaoSimplesDireita(Nodo *nodoDesbalanceado) //realiza rotacao a direita
 {
-    Nodo *backup = y->filhoEsquerda;
-    y->filhoEsquerda = backup->filhoDireita;
-    backup->filhoDireita-> = y;
+    Nodo *backup = nodoDesbalanceado->filhoEsquerda;
+    nodoDesbalanceado->filhoEsquerda = backup->filhoDireita;
+    backup->filhoDireita = nodoDesbalanceado;
     return backup;
 }
 

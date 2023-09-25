@@ -3,7 +3,7 @@
 typedef struct Nodo
 {
 
-    int numeroNodo;
+    short numeroNodo;
 
     short nivelNodo;
 
