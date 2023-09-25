@@ -4,8 +4,6 @@ void menu(short *opcao);
 
 void opcaoInexistente();
 
-short verificarTamanhoNumero(short numero);
-
 short max(short a, short b);
 
 void limparMemoria(Nodo *nodo);
