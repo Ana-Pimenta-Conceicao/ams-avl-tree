@@ -1,12 +1,10 @@
-
-//dev
-Nodo *remover(Nodo *pRaiz, int chave)
+Nodo *remover(Nodo *pRaiz, short chave)
 {
 
     if (pRaiz == NULL)
     {
 
-        printf("Valor não encontrado\n");
+        printf(" </> Elemento não encontrado\n");
 
         return pRaiz;
     }
@@ -16,12 +14,12 @@ Nodo *remover(Nodo *pRaiz, int chave)
         if (pRaiz->numeroNodo == chave)
         {
 
-            if (pRaiz->grauNodo == 0)
+            if (pRaiz->filhoEsquerda == NULL && pRaiz->filhoDireita == NULL)
             {
 
                 free(pRaiz);
 
-                printf("Elemento folha removido %d!\n", chave);
+                printf(" </> Elemento folha removido %d!\n", chave);
 
                 return NULL;
             }
@@ -29,7 +27,7 @@ Nodo *remover(Nodo *pRaiz, int chave)
             else
             {
 
-                if (pRaiz->grauNodo == 2)
+                if (pRaiz->filhoEsquerda != NULL && pRaiz->filhoDireita != NULL)
                 {
 
                     Nodo *aux = pRaiz->filhoEsquerda;
@@ -45,7 +43,7 @@ Nodo *remover(Nodo *pRaiz, int chave)
 
                             paiAux = paiAux->filhoDireita;
 
-                        paiAux->filhoDireita = NULL;
+                        paiAux->filhoDireita = aux->filhoEsquerda;
                     }
                     else
                     {
@@ -56,7 +54,7 @@ Nodo *remover(Nodo *pRaiz, int chave)
 
                     aux->numeroNodo = chave;
 
-                    printf("Elemento trocado: %d !\n", chave);
+                    printf(" </> Elemento trocado: %d !\n", chave);
 
                     free(aux);
 
@@ -78,7 +76,7 @@ Nodo *remover(Nodo *pRaiz, int chave)
 
                     free(pRaiz);
 
-                    printf("Elemento com 1 filho removido %d !\n", chave);
+                    printf(" </> Elemento com 1 filho removido %d !\n", chave);
 
                     return aux;
                 }
@@ -94,6 +92,8 @@ Nodo *remover(Nodo *pRaiz, int chave)
             else
 
                 pRaiz->filhoDireita = remover(pRaiz->filhoDireita, chave);
+
+            return pRaiz;
         }
     }
 }
